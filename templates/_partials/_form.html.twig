@@ -1,0 +1,16 @@
+{{ form_start(productForm) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(productForm.name) }}
+            {{ form_row(productForm.category) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(productForm.price) }}
+            {{ form_row(productForm.stock) }}
+        </div>
+        {{ form_row(productForm.images) }}
+        {{ form_row(productForm.description) }}
+    </div>
+    <button class="btn btn-primary">Valider</button>
+{{ form_end(productForm) }}
+

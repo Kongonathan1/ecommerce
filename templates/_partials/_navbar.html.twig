@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3 ">
+    <a class="navbar-brand ml-2 color-dark">Elirafy</a>
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a href="" class="nav-link">Produit</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_main') }}" class="nav-link">Acceuil</a>
+        </li>
+        <li class="nav-item">
+            <a href=" {{ path('app_cart_index') }} " class="nav-link">Le panier</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+        {% if app.user %}
+            <li class="nav-item">
+                <a href="{{ path('app_profile') }}" class="nav-link">Mon compte</a>
+            </li>
+            {% if "ROLE_ADMIN" in app.user.roles %}
+                <li class="nav-item">
+                    <a href=" {{ path('app_admin_index') }} " class="nav-link">Administration</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a href=" {{ path('app_logout') }} " class="nav-link">Se déconnecter</a>
+            </li>
+        {% else %}
+        <li class="nav-item">
+            <a href=" {{ path('app_login') }} " class="nav-link">Se connecter</a>
+        </li>
+        <li class="nav-item">
+            <a href=" {{ path('app_register') }} " class="nav-link">S'inscrire</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

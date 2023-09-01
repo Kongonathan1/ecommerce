@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration | Catégories{% endblock %}
+
+{% block body %}
+<div class="row m-4">
+    {% include "_partials/_nav_admin.html.twig" %}
+    <main class="col-9">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success"> {{ message }} </div>
+        {% endfor %}
+        <h1 class="text-center">Administration des catégories</h1>
+        <a href="" class="btn btn-success mt-4">Ajouter</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Parent</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td> {{ category.id }} </td>
+                        <td> {{ category.name }} </td>
+                        {% if category.parent is not null %}
+                            <td> {{ category.parent.name }} </td>
+                        {% else %}
+                            <td>Null</td>
+                        {% endif %}
+                        
+                        <td> 
+                            <a href="" class="btn btn-primary">Modifier</a> 
+                            <a href="" class="btn btn-danger">Supprimer</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}

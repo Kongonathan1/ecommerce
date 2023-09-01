@@ -1,0 +1,15 @@
+<ul class="nav nav-pills flex-column mb-auto h-100">
+    <li class="nav-item">
+        <a href="{{ path('app_main') }}" class="nav-link mb-2" aria-current="page">Tout les produits</a>
+    </li>
+    {% for category in categories %}
+    {% if category.parent == null %}
+    <h5> {{ category.name }} </h5>
+    {% else %}
+    <li class="nav-item">
+        <a href="{{ path('app_category_list', {slug: category.slug}) }}" class="nav-link mb-2" aria-current="page">{{
+            category.name }} </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>

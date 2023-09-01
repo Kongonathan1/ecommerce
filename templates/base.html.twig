@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Elirafy | {% block title %}Acceuil{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>☺</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href=" {{asset('asset/css/bootstrap.css') }}">
+        {% block stylesheets %}
+        <link rel="stylesheet" href="Elirafy\public\asset\css\style.css">
+        {% endblock %}
+
+        <script src="{{asset('asset/css/bootstrap.min.js')}}"></script>
+        {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
+            crossorigin="anonymous"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <style>
+            .pagination a {
+                padding: 4px 12px;
+                border-radius: 2px;
+                margin-right: 12px;
+                color: rgba(240, 255, 255, 0.338);
+                background-color: rgb(34, 93, 221);
+                text-decoration: none;
+                transition: all .4s;
+            }
+            .pagination a:hover {
+                background-color: rgba(146, 146, 146, 0.768);
+                color: rgb(34, 93, 221);
+            }
+            .pagination .current {
+                padding: 4px 12px;
+                border-radius: 2px;
+                margin-top: -3.5px;
+                margin-right: 12px;
+                color: rgb(34, 93, 221);
+                background-color: rgba(145, 145, 145, 0.748);
+            }
+            .pagination-container {
+                margin: 25px 0;
+                margin-left: 60%;
+            }
+            .y_center {
+                padding-top: 15%;
+            }
+            .bg-light-grey {
+                background-color: antiquewhite;
+            }
+        </style>
+
+        {% include "_partials/_navbar.html.twig" %}
+
+        {% block body %}{% endblock %}
+    </body>
+</html>
+

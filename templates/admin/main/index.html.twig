@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<div class="row m-4">
+    {% include "_partials/_nav_admin.html.twig" %}
+    <main class="col-9 mt-4 y_center">
+        <h1>Salut Mr.{{ app.user.lastname }}, bienvenue dans votre Administration</h1>
+        <h3 class="text-danger mt-3">"Gérer votre boutique depuis la navigation de gauche"</h3>
+    </main>
+</div>
+{% endblock %}

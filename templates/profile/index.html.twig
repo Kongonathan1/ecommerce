@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% if "ROLE_ADMIN" in app.user.roles %}
+        <div class="btn btn-danger" style="cursor: default; padding: 2px;">Administrateur</div>
+    {% else %}
+        <div class="btn btn-success" style="cursor: default; margin: 2px;">Utilisateur</div>
+    {% endif %}
+    <h1>Bonjour {{ app.user.lastname }} {{ app.user.firstname }}, Bienvenue sur votre profil</h1>
+</div>
+{% endblock %}

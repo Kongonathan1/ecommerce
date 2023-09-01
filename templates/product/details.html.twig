@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit {{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success"> {{ message }} </div>
+        {% endfor %}
+        <div class="col-md-6">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                    {% for image in product.images %}
+                        <div class="carousel-item {{ (loop.first) ? 'active' : '' }}">
+                            <img src=" {{asset('asset/uploads/img/') ~  image.name }}" class="d-block w-100" alt="..."style="width: 100%; ">
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <div class="text-primary" style="font-size: 3rem; font-weight: bold;"> {{ product.price | number_format }} € </div>
+            <h3>Stock: {{ product.stock }} {% if product.stock < 10 %} <div class="text-danger d-inline"style="font-size: 4rem;">!</div> {% endif %} </h3>
+            <p class="card-text"> {{ product.description }} </p>
+            <div class="d-flex justify-content-between mt-2">
+                <a href="" class="btn btn-success">Acheter</a>
+                <a href=" {{ path('app_cart_add', {slug: product.slug, id: product.id}) }} " class="btn btn-warning">Ajouter au panier</a>
+                {% if app.session.get('panier') %}
+                    <a href=" {{ path('app_cart_index') }} " class="btn btn-primary">Voir le panier</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration-produits | Ajout{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="h2">Modifé le produit "{{ product.name }}" </h1>
+    {% include "_partials/_form.html.twig" %}
+</div>
+{% endblock %}

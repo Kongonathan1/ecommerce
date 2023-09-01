@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section class="py-5 text-center bg-light-grey mb-5">
+<div class="row py-lg-5 ">
+    <div class="jumbotron">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Bienvenue sur notre boutique</h1>
+            <p class="lead text-body-secondary">
+                Nous sommes spécialisé dans la vente de matériel informatique, de vêtements pour homme, pour femme et pour enfants
+            </p>
+        </div>
+    </div>
+</div>
+</section>
+<style>
+    .padding {
+        padding: 0 25px;
+    }
+
+    .left {
+        margin-left: 18%;
+    }    
+    .left-full {
+        margin-left: 33%;
+    }
+</style>
+{% if name == 'list' %}
+    <h1 class="left mb-5">Liste des produits de la categorie <strong>{{ category.name }}</strong> </h1>
+{% elseif name == 'main' %}
+    <h1 class="left-full mb-5">Liste de tous les produits</h1>
+{% endif %}
+<section class="row">
+    <div class="col-md-2">
+        
+            
+            <main class="d-flex flex-nowrap">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light mt-2" style="width: 220px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                <h2 class="fs-4">Catégories</h2>
+                </a>
+                <hr>
+                {% include "_partials/_categories_nav.html.twig" %}
+            </main>
+    </div>
+    <div class="col-md-10 px-4">
+        <div class="row">
+            {% if name == 'main' %}
+                {% for product in pagination %}
+                    <div class="album py-2 bg-body-tertiary col-md-4">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                {% for image in product.images %}
+                                    {% if loop.first %}
+                                        <div class="card-img-top"><img src=" {{asset('asset/uploads/img/') ~  image.name }}" alt="" style="width: 100%;"></div>
+                                    {% endif %}
+                                {% else %}
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+                                {% endfor %}
+                            <div class="card-body">
+                                <h1 class="h5 card-title">{{ product.name }}</h1>
+                                <p class="card-text"> {{ product.description | u.truncate(150, '...') }} </p>
+                                <div class="d-flex justify-content-between">
+                                    <a href=" {{ path('app_product_details', {slug: product.slug}) }} " class="btn btn-info">Voir les détails</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="pagination-container">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            {% elseif name == 'list' %}
+                {% for product in products %}
+                    <div class="album py-2 bg-body-tertiary col-md-4">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                {% for image in product.images %}
+                                    {% if loop.first %}
+                                        <div class="card-img-top"><img src=" {{asset('asset/uploads/img/') ~  image.name }}" alt="" style="width: 100%;"></div>
+                                    {% endif %}
+                                {% else %}
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+                                {% endfor %}
+                            <div class="card-body">
+                                <h1 class="h5 card-title">{{ product.name }}</h1>
+                                <p class="card-text"> {{ product.description | u.truncate(150, '...') }} </p>
+                                <div class="d-flex justify-content-between">
+                                    <a href=" {{ path('app_product_details', {slug: product.slug}) }} " class="btn btn-info">Voir les détails</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

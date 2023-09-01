@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Inscrivez-vous</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        <fieldset class="mb-3">
+            <legend>Mon identité</legend>
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
+        </fieldset>
+        <fieldset>
+            <legend>Mes coordonnées</legend>
+            {{ form_row(registrationForm.address) }}
+            {{ form_row(registrationForm.zipcode) }}
+            {{ form_row(registrationForm.city) }}
+        </fieldset>
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+        <a href=" {{ path('app_login') }} " class="btn btn-secondary">Se connecter</a>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

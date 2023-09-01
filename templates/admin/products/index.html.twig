@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration | Produits{% endblock %}
+
+{% block body %}
+<div class="row m-4">
+    {% include "_partials/_nav_admin.html.twig" %}
+    <main class="col-9">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success"> {{ message }} </div>
+        {% endfor %}
+        <h1 class="text-center">Administration des produits</h1>
+        <a href="{{ path('app_admin_product_add') }}" class="btn btn-success mt-4">Ajouter</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix (€)</th>
+                    <th>Stock</th>
+                    <th>Date de création</th>
+                    <th>Catégorie(s)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td> {{ product.name }} </td>
+                        <td> {{ product.price | number_format }} </td>
+                        <td> {{ product.stock }} </td>
+                        <td> {{ product.CreatedAt | date("Y-m-d") }} </td>
+                        <td> {{ product.category.name }} </td>
+                        <td> 
+                            <a href="{{ path('app_admin_product_edit', {id: product.id}) }}" class="btn btn-primary">Modifier</a> 
+                            <a href="" class="btn btn-danger">Supprimer</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}
